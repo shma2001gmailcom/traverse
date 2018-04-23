@@ -9,9 +9,11 @@ import java.util.LinkedList;
  * author: misha
  * date: 4/21/18
  * time: 7:15 PM
+ * push() adds first
+ * pop() removes first and adds first's children
  */
 public final class Stack<T> implements TraverseCollection<T> {
-    private LinkedList<Node<T>> list = new LinkedList<>();
+    private final LinkedList<Node<T>> list = new LinkedList<>();
 
     @Override
     public void push(final Node<T> node) {

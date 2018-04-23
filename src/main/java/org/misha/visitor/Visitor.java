@@ -8,9 +8,13 @@ import org.misha.Node;
  * time: 7:07 PM
  */
 public abstract class Visitor<T> {
-
+    private final TraverseCollection<T> collection;
+    
+    Visitor(final TraverseCollection<T> collection) {
+        this.collection = collection;
+    }
+    
     public void visit(Node<T> node) {
-        final TraverseCollection<T> collection = getTraverseCollection();
         collection.push(node);
         while (!collection.isEmpty()) {
             doSomething(collection.pop());
@@ -18,6 +22,4 @@ public abstract class Visitor<T> {
     }
 
     abstract void doSomething(Node<T> node);
-
-    abstract TraverseCollection<T> getTraverseCollection();
 }

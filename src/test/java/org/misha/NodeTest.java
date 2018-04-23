@@ -1,6 +1,6 @@
 package org.misha;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.misha.visitor.BranchVisitor;
 import org.misha.visitor.LayerVisitor;
 
@@ -14,14 +14,16 @@ import static org.junit.Assert.*;
  * date: 4/21/18
  * time: 12:47 PM
  */
-class NodeTest {
+public class NodeTest {
+    private static final String NODE_0 = "node0";
+    private static final String NODE_1 = "node1";
     private Node<String> root;
     private Node<String> node0;
     private Node<String> node1;
     private Node<String> node00;
     private Node<String> node10;
 
-    NodeTest() {
+    public NodeTest() {
         root = new Node<>();
         root.setData("root");
         node0 = new Node<>();
@@ -31,8 +33,8 @@ class NodeTest {
         node10 = new Node<>();
         Node<String> node11 = new Node<>();
         Node<String> node12 = new Node<>();
-        node0.setData("node0");
-        node1.setData("node1");
+        node0.setData(NODE_0);
+        node1.setData(NODE_1);
         node00.setData("node00");
         node01.setData("node01");
         node10.setData("node10");
@@ -44,53 +46,53 @@ class NodeTest {
     }
 
     @Test
-    void iterator() {
+    public void iterator() {
         final Set<String> childData = new HashSet<>();
         for (final Node<String> node : root) {
             childData.add(node.getData());
         }
-        assertTrue(childData.contains("node0") && childData.contains("node1"));
+        assertTrue(childData.contains(NODE_0) && childData.contains(NODE_1));
     }
 
     @Test
-    void getData() {
+    public void getData() {
         assertEquals(root.getData(), "root");
     }
 
     @Test
-    void attach() {
+    public void attach() {
         assertTrue(root.hasChild(node0) && root.hasChild(node1));
     }
 
     @Test
-    void getParent() {
+    public void getParent() {
         assertTrue(node0.getParent() == root && node1.getParent() == root);
     }
 
     @Test
-    void isLeaf() {
+    public void isLeaf() {
         assertTrue(node00.isLeaf() && node10.isLeaf() && !root.isLeaf());
     }
 
     @Test
-    void isRoot() {
+    public void isRoot() {
         assertTrue(root.isRoot() && !node0.isRoot());
     }
 
     @Test
-    void depth() {
+    public void depth() {
         assertTrue(root.depth() == 0 && node0.depth() == 1 && node1.depth() == 1);
     }
 
     @Test
-    void nodesByCondition() {
-        assertTrue(root.childrenByCondition((node) -> node.getData().equals("node0")).contains(node0));
-        assertFalse(root.childrenByCondition((node) -> node.getData().equals("node1")).contains(node0));
-        assertTrue(root.childrenByCondition((node) -> node.depth() > 1).isEmpty());
+    public void nodesByCondition() {
+        assertTrue(root.childrenByCondition(node -> node.getData().equals(NODE_0)).contains(node0));
+        assertFalse(root.childrenByCondition(node -> node.getData().equals(NODE_1)).contains(node0));
+        assertTrue(root.childrenByCondition(node -> node.depth() > 1).isEmpty());
     }
 
     @Test
-    void traverseByLayers() {
+    public void traverseByLayers() {
         class LayerTraveler extends LayerVisitor<String> {
             private final Set<Node<String>> selected = new HashSet<>();
 
@@ -110,7 +112,7 @@ class NodeTest {
     }
 
     @Test
-    void traverseByBranches() {
+    public void traverseByBranches() {
         class BranchTraveler extends BranchVisitor<String> {
             private final Set<Node<String>> selected = new HashSet<>();
 
