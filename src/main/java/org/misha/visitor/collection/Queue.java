@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * date: 4/21/18
  * time: 7:15 PM
  * push(node) adds (as last) node with node's siblings
- * pop() removes first and makes above push for peak children
+ * pop() removes first and makes above push for (removed) first children
  */
 public final class Queue<T> implements TraverseCollection<T> {
     private final LinkedList<Node<T>> list = new LinkedList<>();
