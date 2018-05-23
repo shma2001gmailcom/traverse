@@ -56,7 +56,7 @@ public class NodeTest {
 
     @Test
     public void getData() {
-        assertEquals(root.getData(), "root");
+        assertEquals("root", root.getData());
     }
 
     @Test

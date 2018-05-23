@@ -14,12 +14,12 @@ public abstract class Visitor<T> {
         this.collection = collection;
     }
     
-    public void visit(Node<T> node) {
+    public void visit(final Node<T> node) {
         collection.push(node);
         while (!collection.isEmpty()) {
             doSomething(collection.pop());
         }
     }
 
-    abstract void doSomething(Node<T> node);
+    abstract void doSomething(final Node<T> node);
 }
