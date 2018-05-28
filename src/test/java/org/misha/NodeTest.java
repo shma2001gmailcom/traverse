@@ -66,7 +66,7 @@ public class NodeTest {
 
     @Test
     public void getParent() {
-        assertTrue(node0.getParent() == root && node1.getParent() == root);
+        assertTrue(node0.getParent() == root && node1.getParent() == root && root.getParent() == null);
     }
 
     @Test

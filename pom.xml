@@ -106,7 +106,7 @@
         <finalName>${application-name}</finalName>
         <directory>target</directory>
         <outputDirectory>target/classes</outputDirectory>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
