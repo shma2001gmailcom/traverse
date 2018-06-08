@@ -94,10 +94,6 @@ class NodeTest {
         class LayerTraveler extends LayerVisitor<String> {
             private final Set<Node<String>> selected = new HashSet<>();
 
-            private Set<Node<String>> getFiltered() {
-                return selected;
-            }
-
             @Override
             protected void doSomething(final Node<String> node) {
                 selected.addAll(node.childrenByCondition(n -> n.depth() > 1 && n.getData().endsWith("0")));
@@ -105,7 +101,7 @@ class NodeTest {
         }
         final LayerTraveler layerTraveler = new LayerTraveler();
         layerTraveler.visit(root);
-        final Set<Node<String>> filteredByBranch = layerTraveler.getFiltered();
+        final Set<Node<String>> filteredByBranch = layerTraveler.selected;
         assertTrue(filteredByBranch.size() == 2 && filteredByBranch.contains(node00));
     }
 
@@ -114,10 +110,6 @@ class NodeTest {
         class BranchTraveler extends BranchVisitor<String> {
             private final Set<Node<String>> selected = new HashSet<>();
 
-            private Set<Node<String>> getFiltered() {
-                return selected;
-            }
-
             @Override
             protected void doSomething(final Node<String> node) {
                 selected.addAll(node.childrenByCondition(n -> n.depth() > 1 && n.getData().endsWith("0")));
@@ -125,7 +117,7 @@ class NodeTest {
         }
         final BranchTraveler branchTraveler = new BranchTraveler();
         branchTraveler.visit(root);
-        final Set<Node<String>> filteredByLayer = branchTraveler.getFiltered();
+        final Set<Node<String>> filteredByLayer = branchTraveler.selected;
         assertTrue(filteredByLayer.size() == 2 && filteredByLayer.contains(node10));
     }
 }
