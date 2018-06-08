@@ -80,7 +80,7 @@ public final class Node<T> implements Iterable<Node<T>> {
 
     private void checkNotAttached() {
         if (isAttached) {
-            throw new IllegalStateException("already has a parent" + this);
+            throw new IllegalStateException("already has a parent " + this);
         }
     }
 
